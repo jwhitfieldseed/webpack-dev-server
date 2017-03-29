@@ -139,6 +139,9 @@ if(hostname === "0.0.0.0" || hostname === "::") {
 	}
 }
 
+/******************************************************************************************
+// HACK AROUND https://github.com/webpack/webpack-dev-server/issues/863 for now
+
 // `hostname` can be empty when the script path is relative. In that case, specifying
 // a protocol would result in an invalid URL.
 // When https is used in the app, secure websockets are always necessary
@@ -146,6 +149,7 @@ if(hostname === "0.0.0.0" || hostname === "::") {
 if(hostname && (self.location.protocol === "https:" || urlParts.hostname === "0.0.0.0")) {
 	protocol = self.location.protocol;
 }
+********************************************************************************************/
 
 var socketUrl = url.format({
 	protocol: protocol,
